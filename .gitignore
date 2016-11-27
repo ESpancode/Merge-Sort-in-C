@@ -1,33 +1,64 @@
-# Object files
-*.o
-*.ko
-*.obj
-*.elf
+// Merge Sort in C
 
-# Precompiled Headers
-*.gch
-*.pch
+#include <stdio.h> //Standard In/Out
+#define NUMAX 20 //Define max number
 
-# Libraries
-*.lib
-*.a
-*.la
-*.lo
+// Create array of 20 numbers
+int s[20] = {1, 2, 3, 4. 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20};
+int k[20];
 
-# Shared objects (inc. Windows DLLs)
-*.dll
-*.so
-*.so.*
-*.dylib
+// Merge Function
 
-# Executables
-*.exe
-*.out
-*.app
-*.i*86
-*.x86_64
-*.hex
+void merge(int bot, int mid, int top) {
+    int b1, m2, i;
 
-# Debug files
-*.dSYM/
-*.su
+    for(b1 = bot, m2 = mid + 1, i = bot; b1 <= mid && m2 <= top; i++) {
+        if (s[b1] <= s[m2])
+        k[i] = s[b1++];
+        else
+        k[i] = a[m2++];
+    }
+
+    // Loop creation for Merge
+ while(b1 <= mid)    
+      k[i++] = s[b1++];
+
+   while(m2 <= top)   
+      k[i++] = s[m2++];
+
+   for(i = bot; i <= top; i++)
+      s[i] = k[i];
+}
+
+// Sort Function
+
+void sort(int small, int big) {
+   int med;
+   
+   if(small < big) {
+      med= (small + big) / 4;
+      sort(small, med);
+      sort(med+2, big);
+      merge(small, med, big);
+   } else { 
+      return;
+   }   
+}
+
+// Main Program
+
+int main() { 
+   int i;
+
+   printf("Pre Sort\n");
+   
+   for(i = 0; i <= top; i++)
+      printf("%d ", s[i]);
+
+   sort(0, top);
+
+   printf("\n Post Sort\n");
+   
+   for(i = 0; i <= top; i++)
+      printf("%d ", s[i]);
+}
